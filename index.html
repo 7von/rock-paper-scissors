@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var playerCount = 0;
+        var computerCount = 0;
+        var tie = 0;
+
+       /*function lets the computer randomly picks its rock paper or scissor*/
+        function computerPlay(){
+            var computerPick = Math.floor(Math.random() * (4-1)+1);
+
+            /*- Switch statement used to shorting code from if-statements -*/
+            switch(computerPick){
+                case 1: 
+                return "rock";
+                break;
+                case 2: 
+                return "scissors";
+                break;
+                case 3: 
+                return "paper";
+                break;
+            }
+            return computerPick;
+        }
+
+        /*function comparing myPick vs the computerPick and adds to respective win count*/
+        function myPlay(myPick, computerPick){
+    
+            if ((myPick === 'rock' && computerPick === 'scissors') ||
+                (myPick === 'paper' && computerPick === 'rock') ||
+                (myPick === 'scissors' && computerPick === 'paper')){
+                playerCount++;
+            } else if (
+                (myPick === 'rock' && computerPick === 'paper') ||
+                (myPick === 'paper' && computerPick === 'scissors') ||
+                (myPick === 'scissors' &&computerPick === 'rock')) {
+                 computerCount++;
+            }
+            else {
+                tie++
+            }
+        }
+        
+        /* allows us to use the prvious functions and a for loop to create 5 seperate rounds */
+        function game(){
+            for (var i = 0; i < 5; i++){
+                var myPick = prompt("Rock Paper or Scissors?: ").toLowerCase();
+                var computerPick = computerPlay();
+                myPlay(myPick, computerPick);
+            }
+
+            if (playerCount >= computerCount){
+                console.log("Yay you beat the computer:" + playerCount + "-" + computerCount + "-" + tie) 
+            } else if (playerCount <= computerCount){
+                console.log("The computer beat you by:" + playerCount + "-" + computerCount + "-" + tie) 
+            }
+        }
+
+        /*-- What will actually get the code to run --*/
+        var result = console.log(game());
+
+    </script>
+</body>
+</html>
